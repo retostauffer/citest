@@ -1,34 +1,25 @@
-# This will run on Travis' 'new' container-based infrastructure
 sudo: false
-
-# Blacklist
 branches:
   except:
-    - gh-pages
-
-# Environment variables
+  - gh-pages
 env:
   global:
-    - GH_REPO_NAME: "citest"
-    - DOXYFILE: $TRAVIS_BUILD_DIR/doxygen.conf
-    - GH_REPO_REF: github.com/retostauffer/citest.git
-
-# Install dependencies
+  - GH_REPO_NAME: citest
+  - DOXYFILE: "$TRAVIS_BUILD_DIR/doxygen.conf"
+  - GH_REPO_REF: github.com/retostauffer/citest.git
 addons:
   apt:
     packages:
-      - doxygen
-      - doxygen-doc
-      - doxygen-latex
-      - doxygen-gui
-      - graphviz
-
-# Build your code e.g. by calling make
+    - doxygen
+    - doxygen-doc
+    - doxygen-latex
+    - doxygen-gui
+    - graphviz
 script:
-  - make
-
-# Generate and deploy documentation
+- make
 after_success:
-  - cd $TRAVIS_BUILD_DIR
-  - chmod +x generateDocumentationAndDeploy.sh
-  - ./generateDocumentationAndDeploy.sh
+- cd $TRAVIS_BUILD_DIR
+- chmod +x generateDocumentationAndDeploy.sh
+- "./generateDocumentationAndDeploy.sh"
+GH_REPO_TOKEN=d81e2b8db086b71d85a1ecfa0fb329b7f7b7a071:
+  secure: ZLAut5lMmLqIl9wam5eWCAnPTnjdaClu5+ilf17j0mg5PqDNTdpl2YPYT3knai9LZkNM2U1b23T8mO11z6Db2+ym5sm6apklh7+UKW/J7Df9g5ctK8ctjaXfDhYJntUS6UwRLIXj14UzGpkZrlpY34ft0SwFTD2n0JXI0y81Kpkw5l4uvxqAPvBBntqbGYg/HXbLYwd6uxVg50Wmly2cEB+oTdLXT61VbeEBkdrRw5/DN2K+3srxwyTnEqGe6GLPlDKF8o0ib3AS4RWp8CquNLJh+mwBgY/gwsU8D+ayktFwf+OcflG+c2SQYPV91EcfE9JYoslxZGSA9eK+dWc22Yf+btf+J8dAkL1EqptqMu2vtCA0uF3qqUdhYiqEWgn063VExK1J1cXwKZ75imMZ0/qcBm26bLpgfYzI3tuydYk99d6tH5H9zcOqCs+Wxwr5qYu+UfZz9OlBDmto3wgs1Gy+l0IxIbOsj/v+g5Z5ZpC49PAUOU6sRhVIa3zS26whOgswrr+otYTFR+O7dwNfgj0V5fZH7ofBRlv19akANVQJj70mPjtM+E3HFudLJt0vKozlYZR7ymPwHtBYMm0qC2k+L6z34HgfNzgydDT4jqEYVAFxCTQjWGgWGf1DUhjbw2krzudliOh6mltmqh1x/lB7Y73SEkW95hvs43cxzNA=
